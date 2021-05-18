@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.leymusapp.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_gallery"
+        android:name="com.example.leymusapp.ui.gallery.GalleryFragment"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
+        android:id="@+id/nav_news"
+        android:name="com.example.leymusapp.ui.news.NewsFragment"
+        android:label="@string/menu_slideshow"
+        tools:layout="@layout/fragment_news" />
+
+    <fragment
+        android:id="@+id/nav_order_lesson"
+        android:name="com.example.leymusapp.ui.orderLesson.fragment_order_lesson"
+        android:label="Order Lesson"
+        />
+
+    <fragment
+        android:id="@+id/nav_ordered_lessons"
+        android:name="com.example.leymusapp.ui.orderedLessons.fragment_ordered_lessons"
+        android:label="Ordered Lessons"
+        />
+</navigation>

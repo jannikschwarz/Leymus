@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#dce6e5"
+    tools:context=".ui.home.HomeFragment">
+
+
+    <ImageView
+        android:id="@+id/loco_home"
+        android:layout_width="208dp"
+        android:layout_height="243dp"
+        android:src="@drawable/leymus_logo_transparent_onlypic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.032" />
+
+    <TextView
+        android:id="@+id/drøm_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:text="Min drøm er..."
+        android:textSize="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loco_home" />
+
+    <TextView
+        android:id="@+id/main_text_home"
+        android:layout_width="318dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="12dp"
+        android:text="At skabe et inspirerende værk- og værested, hvor kunst og kreativitet er omdrejningspunkt og den smukke vestjyske natur danner rammen. Et nærende modested hvor hvert menneske har betydning"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/drøm_home" />
+
+    <ImageView
+        android:id="@+id/cycling_image_view"
+        android:layout_width="415dp"
+        android:layout_height="237dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/main_text_home"
+        app:layout_constraintVertical_bias="1.0"
+        tools:src="@drawable/i1" />
+</androidx.constraintlayout.widget.ConstraintLayout>

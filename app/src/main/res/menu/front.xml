@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/English"
+        android:onClick="toggleEnglish"
+        android:orderInCategory="100"
+        android:title="English"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Dansk"
+        android:onClick="toggleDanish"
+        android:orderInCategory="100"
+        android:title="Dansk"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/Profile"
+        android:icon="@mipmap/profile_icon"
+        android:orderInCategory="100"
+        android:title="Profile"
+        app:showAsAction="never" />
+</menu>

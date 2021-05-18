@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "120590702410",
+    "project_id": "leymus-a4763",
+    "storage_bucket": "leymus-a4763.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:120590702410:android:e35da1528f5435119b13b3",
+        "android_client_info": {
+          "package_name": "com.example.leymusapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "120590702410-96pf5ap7odsd6bgngiv09pbsci7hao5m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmy65QQMxOENqp3OU3j998ZD2s3nuYxw0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "120590702410-96pf5ap7odsd6bgngiv09pbsci7hao5m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
