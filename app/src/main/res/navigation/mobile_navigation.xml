@@ -20,18 +20,20 @@
     <fragment
         android:id="@+id/nav_news"
         android:name="com.example.leymusapp.ui.news.NewsFragment"
-        android:label="@string/menu_slideshow"
+        android:label="News"
         tools:layout="@layout/fragment_news" />
 
     <fragment
         android:id="@+id/nav_order_lesson"
         android:name="com.example.leymusapp.ui.orderLesson.fragment_order_lesson"
         android:label="Order Lesson"
+        tools:layout="@layout/fragment_order_lesson_fragment"
         />
 
     <fragment
         android:id="@+id/nav_ordered_lessons"
         android:name="com.example.leymusapp.ui.orderedLessons.fragment_ordered_lessons"
         android:label="Ordered Lessons"
+        tools:layout="@layout/fragment_ordered_lessons_fragment"
         />
 </navigation>

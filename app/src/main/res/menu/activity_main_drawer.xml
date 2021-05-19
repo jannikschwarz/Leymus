@@ -18,18 +18,22 @@
             android:title="News" />
     </group>
 
-    <group android:checkableBehavior="single" android:id="@+id/order_lesson">
-        <item
-            android:id="@+id/nav_order_lesson"
-            android:icon="@mipmap/lesson_icon"
-            android:title="Order Lesson"
-            />
-        <item
-            android:id="@+id/nav_existing_lessons"
-            android:icon="@mipmap/list_icon"
-            android:title="Existing Lessons"
-            />
-    </group>
+    <item android:title="Lesson">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_order_lesson"
+                    android:icon="@mipmap/lesson_icon"
+                    android:title="Order Lesson"
+                    />
+                <item
+                    android:id="@+id/nav_existing_lessons"
+                    android:icon="@mipmap/list_icon"
+                    android:title="Existing Lessons"
+                    />
+            </group>
+        </menu>
+    </item>
 
     <group android:id="@id/logout">
         <item

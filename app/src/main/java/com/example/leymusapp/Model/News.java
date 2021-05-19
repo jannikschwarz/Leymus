@@ -3,21 +3,15 @@ package com.example.leymusapp.Model;
 import android.graphics.Bitmap;
 
 public class News {
-    private String name;
     private String text;
-    private Bitmap image;
+    private String image;
 
-    public News(String name, String text, Bitmap image){
+    public News(String text, String image){
         this.text = text;
         this.image = image;
-        this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public Bitmap getImage() {
+    public String getImage() {
         return image;
     }
 

@@ -26,10 +26,6 @@ public class fragment_ordered_lessons extends Fragment {
     private FragmentOrderedLessonsViewModel mViewModel;
     TextView orderedTextView;
 
-    public static fragment_ordered_lessons newInstance() {
-        return new fragment_ordered_lessons();
-    }
-
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

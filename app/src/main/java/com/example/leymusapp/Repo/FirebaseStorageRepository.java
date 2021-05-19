@@ -1,56 +1,37 @@
 package com.example.leymusapp.Repo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.leymusapp.Model.ImageId;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FirebaseStorageRepository {
-    private final FirebaseStorage storage;
     private static FirebaseStorageRepository instance;
-    private StorageReference imageRef;
 
     public MutableLiveData<List<ImageId>> imagesForHomeM;
-    public MutableLiveData<List<Bitmap>> newsImagesToReturn;
-    public MutableLiveData<List<Bitmap>> galleryToReturn;
+    public MutableLiveData<List<ImageId>> imagesForNewsM;
+    public MutableLiveData<List<ImageId>> imagesForGalleryM;
 
     private List<ImageId> imagesForHome;
-
-    private List<Bitmap> newsImages;
-    private List<Bitmap> galleryImages;
-    private boolean retrievedImageIsNotNull;
-    private int numberNews = 1;
-    private int numberGallery = 1;
+    private List<ImageId> imagesForNews;
+    private List<ImageId> imagesForGallery;
+    private DatabaseReference databaseReference;
 
     private FirebaseStorageRepository(){
-        storage = FirebaseStorage.getInstance();
-        imageRef = storage.getReference();
         imagesForHomeM = new MutableLiveData<>();
-        newsImagesToReturn = new MutableLiveData<>();
-        galleryToReturn = new MutableLiveData<>();
-
-        newsImages = new ArrayList<>();
-        galleryImages = new ArrayList<>();
-
-        retrieveNewsImages();
-        retrieveGalleryImages();
-        galleryToReturn.setValue(galleryImages);
-        newsImagesToReturn.setValue(newsImages);
+        imagesForNewsM = new MutableLiveData<>();
+        imagesForGalleryM = new MutableLiveData<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
     }
 
     public static synchronized FirebaseStorageRepository getInstance(){
@@ -60,76 +41,85 @@ public class FirebaseStorageRepository {
         return instance;
     }
 
-    public MutableLiveData<List<Bitmap>> getNewsImagesToReturn() {
-        return newsImagesToReturn;
-    }
-
-    public MutableLiveData<List<Bitmap>> getGalleryToReturn() {
-        return galleryToReturn;
-    }
-
     public void retrieveNewsImages(){
-        StorageReference ref = storage.getReference()
-                .child("newsImg")
-                .child("n" + numberNews + ".jpg");
-        ref.getBytes(10024*10024)
-                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        if(bitmap == null){
-                            numberNews = 1;
-                        }else{
-                            newsImages.add(bitmap);
-                            numberNews++;
-                            retrieveNewsImages();
-                        }
-                    }
-                });
+        imagesForNews = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query query = databaseReference.child("NewsImages");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
+                    imagesForNews.add(dataSnapshot.getValue(ImageId.class));
+                    System.out.println("Inside Retrieve Gallery For loop1");
+                }
+                imagesForNewsM.postValue(imagesForNews);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println(error.toString());
+            }
+        });
     }
 
-    public void retrieveImage(){
+    public MutableLiveData<List<ImageId>> getImagesForNewsM() {
+        retrieveNewsImages();
+        imagesForNewsM.setValue(imagesForNews);
+        System.out.println("Size news: " + imagesForNews.size());
+        return imagesForNewsM;
+    }
+
+    public void retrieveHomeImages(){
         imagesForHome = new ArrayList<>();
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("HomeImages");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
-                    imagesForHome.add(snapshot.getValue(ImageId.class));
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    imagesForHome.add(dataSnapshot.getValue(ImageId.class));
+                    System.out.println("Inside Retrieve Gallery For loop2");
                 }
                 imagesForHomeM.postValue(imagesForHome);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                System.out.println(error.toString());
             }
         });
     }
 
     public MutableLiveData<List<ImageId>> getImagesForHomeM() {
-        retrieveNewsImages();
+        retrieveHomeImages();
         imagesForHomeM.setValue(imagesForHome);
+        System.out.println("Size home: " + imagesForHome.size());
         return imagesForHomeM;
     }
 
     public void retrieveGalleryImages(){
-        StorageReference ref = storage.getReference()
-                .child("gallery")
-                .child("i" + numberGallery + ".jpg");
-        ref.getBytes(10024*10024)
-                .addOnSuccessListener(new OnSuccessListener<byte[]>() {
-                    @Override
-                    public void onSuccess(byte[] bytes) {
-                        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                        if(bitmap == null){
-                            numberGallery = 1;
-                        }else{
-                            galleryImages.add(bitmap);
-                            numberGallery++;
-                            retrieveGalleryImages();
-                        }
-                    }
-                });
+        imagesForGallery = new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        Query query = databaseReference.child("GalleryImages");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    imagesForGallery.add(dataSnapshot.getValue(ImageId.class));
+                }
+                System.out.println("Inside Retrieve Gallery" + imagesForGallery.size());
+                imagesForGalleryM.postValue(imagesForHome);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println(error.toString());
+            }
+        });
+    }
+
+    public MutableLiveData<List<ImageId>> getGalleryToReturn() {
+        retrieveGalleryImages();
+        imagesForGalleryM.setValue(imagesForGallery);
+        System.out.println("Size gallery: " + imagesForGallery.size());
+        return imagesForGalleryM;
     }
 }

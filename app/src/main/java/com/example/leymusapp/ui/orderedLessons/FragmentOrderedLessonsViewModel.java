@@ -23,7 +23,23 @@ public class FragmentOrderedLessonsViewModel extends AndroidViewModel {
         allLessons = lessonRepository.getAllLessons();
     }
 
-    public LiveData<List<Lesson>> getAllLessons() {
-        return allLessons;
+    public LiveData<List<Lesson>> getAllLessons(){
+        return lessonRepository.getAllLessons();
+    }
+
+    public void insertLesson(final Lesson lesson){
+        lessonRepository.insert(lesson);
+    }
+
+    public void updateLesson(final Lesson lesson){
+        lessonRepository.updateLesson(lesson);
+    }
+
+    public void deleteLesson(final Lesson lesson){
+        lessonRepository.deleteLesson(lesson);
+    }
+
+    public void deleteAllLessons(){
+        lessonRepository.deleteAllLessons();
     }
 }

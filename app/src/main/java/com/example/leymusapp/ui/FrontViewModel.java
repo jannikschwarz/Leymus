@@ -30,40 +30,4 @@ public class FrontViewModel extends AndroidViewModel {
     public void signOut(){
         userRepository.signOut();
     }
-
-    public LiveData<List<Lesson>> getAllLessons(){
-        return lessonRepository.getAllLessons();
-    }
-
-    public void insertLesson(final Lesson lesson){
-        lessonRepository.insert(lesson);
-    }
-
-    public void updateLesson(final Lesson lesson){
-        lessonRepository.updateLesson(lesson);
-    }
-
-    public void deleteLesson(final Lesson lesson){
-        lessonRepository.deleteLesson(lesson);
-    }
-
-    public void deleteAllLessons(){
-        lessonRepository.deleteAllLessons();
-    }
-
-    public void createNewLesson(String name, String type) {
-        List<Lesson> allLessons = getAllLessons().getValue();
-        Lesson toAdd = new Lesson(name,allLessons.size(),type,userRepository.getCurrentUser().getValue().getEmail());
-        boolean exists = false;
-        for(int i = 0; i<allLessons.size(); i++){
-            if(allLessons.get(i).equals(toAdd)){
-                updateLesson(toAdd);
-                exists = true;
-                break;
-            }
-        }
-        if(exists){
-            insertLesson(toAdd);
-        }
-    }
 }

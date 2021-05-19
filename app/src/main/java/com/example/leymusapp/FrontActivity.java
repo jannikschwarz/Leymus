@@ -2,7 +2,9 @@ package com.example.leymusapp;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
@@ -30,37 +32,32 @@ public class FrontActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private FrontViewModel viewModel;
-    FirebaseDatabase database = FirebaseDatabase.getInstance("https://leymus-a4763-default-rtdb.europe-west1.firebasedatabase.app/");
-    DatabaseReference myRef = database.getReference();
-    private FirebaseStorage storage = FirebaseStorage.getInstance();
-    private SharedPreferences prefs = getSharedPreferences("LanguageSetting",MODE_PRIVATE);
-    private SharedPreferences.Editor editor = prefs.edit();
-
-    EditText lessonName;
-    EditText lessonType;
-    Button addLesson;
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        try{
+            prefs = getSharedPreferences("LanguageSetting",MODE_PRIVATE);
+            editor = prefs.edit();
+        }catch (NullPointerException e){}
         viewModel = new ViewModelProvider(this).get(FrontViewModel.class);
-        myRef.setValue("Hello, World!");
         checkedIfSignetIn();
         setContentView(R.layout.activity_front);
+        String action = Intent.ACTION_VIEW;
+        Uri uri = Uri.parse("https://leymus.art/");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(action,uri));
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_news)
                 .setDrawerLayout(drawer)
@@ -68,16 +65,6 @@ public class FrontActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-        lessonName = findViewById(R.id.lessonNameEditText);
-        lessonType = findViewById(R.id.lessonTypeEditText);
-        addLesson = findViewById(R.id.addLesson);
-        addLesson.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addLesson();
-            }
-        });
     }
 
     private void checkedIfSignetIn() {
@@ -106,25 +93,17 @@ public class FrontActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
-    public void signOut(View v){
+    public void signOut(MenuItem item){
         viewModel.signOut();
         startMainActivity();
     }
 
-    public void addLesson(){
-        if(lessonType.getText().toString().isEmpty() || lessonName.getText().toString().isEmpty()){
-            Toast.makeText(this, "Name or type is empty", Toast.LENGTH_SHORT).show();
-        }else{
-            viewModel.createNewLesson(lessonType.getText().toString(),lessonName.getText().toString());
-        }
-    }
-
-    public void toggleEnglish(){
+    public void toggleEnglish(MenuItem item){
         editor.putString("Language","English");
         editor.apply();
     }
 
-    public void toggleDanish(){
+    public void toggleDanish(MenuItem item){
         editor.putString("Language","Dansk");
         editor.apply();
     }

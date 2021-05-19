@@ -1,35 +1,27 @@
-package com.example.leymusapp.Model;
+package com.example.leymusapp.ui.news;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.leymusapp.Model.News;
 import com.example.leymusapp.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
-
-    private ArrayList<News> mNews;
     private OnListItemClickListener mOnItemClickListener;
-    public ImageView icon;
-    public List<ImageId> imagesToCycle;
+    public ArrayList<News> recycleNews;
 
-    NewsAdapter(ArrayList<News> news, OnListItemClickListener listener){
-        mNews = news;
+    public NewsAdapter(ArrayList<News> recycleNews, OnListItemClickListener listener){
+        this.recycleNews = recycleNews;
         mOnItemClickListener = listener;
-    }
-
-    public void setImagesToCycle(List<ImageId> imagesToCycle) {
-        this.imagesToCycle = imagesToCycle;
     }
 
     @NonNull
@@ -40,14 +32,13 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
     }
 
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position){
-        viewHolder.name.setText(mNews.get(position).getName());
-        for(int i = 0; i < imagesToCycle.size(); i++){
-            viewHolder.setImage(imagesToCycle.get(i).getRef());
+        for(int i = 0; i < recycleNews.size(); i++){
+            viewHolder.setImage(recycleNews.get(i).getImage());
         }
     }
 
     public int getItemCount(){
-        return mNews.size();
+        return recycleNews.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{

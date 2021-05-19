@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 42;
     private MainActivityViewModel viewModel;
     private Button login;
-    private SharedPreferences prefs = getSharedPreferences("LanguageSetting",MODE_PRIVATE);
-    private SharedPreferences.Editor editor = prefs.edit();
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +30,10 @@ public class MainActivity extends AppCompatActivity {
         viewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
         checkIfSignetIn();
         setContentView(R.layout.activity_main);
-        String language = prefs.getString("Language","default_name");
-        if(language.equals("English")){
-
-        }else if(language.equals("Dansk")){
-
-        }else{
+        try{
+           prefs = getSharedPreferences("LanguageSetting",MODE_PRIVATE);
+           editor = prefs.edit();
+        }catch (NullPointerException e){
 
         }
         login = findViewById(R.id.login);
