@@ -31,7 +31,7 @@ public class FirebaseStorageRepository {
         imagesForHomeM = new MutableLiveData<>();
         imagesForNewsM = new MutableLiveData<>();
         imagesForGalleryM = new MutableLiveData<>();
-        databaseReference = FirebaseDatabase.getInstance("https://leymus-a4763-default-rtdb.firebaseio.com").getReference();
+        databaseReference = FirebaseDatabase.getInstance("https://leymusapp-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
     }
 
     public static synchronized FirebaseStorageRepository getInstance(){
@@ -68,7 +68,7 @@ public class FirebaseStorageRepository {
 
     public void retrieveHomeImages(){
         imagesForHome = new ArrayList<>();
-        Query query = databaseReference.child("HomeImages");
+        Query query = databaseReference.child("panItems");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

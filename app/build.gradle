@@ -46,9 +46,10 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.12.0'
 
     //Firebase
+    implementation 'com.google.firebase:firebase-database:19.7.0'
     implementation platform('com.google.firebase:firebase-bom:27.1.0')
     implementation 'com.google.firebase:firebase-analytics'
-    implementation 'com.google.firebase:firebase-database:19.7.0'
+
 
     //App layout
     implementation 'androidx.recyclerview:recyclerview:1.2.0'

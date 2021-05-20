@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "120590702410",
-    "project_id": "leymus-a4763",
-    "storage_bucket": "leymus-a4763.appspot.com"
+    "project_number": "692816554960",
+    "firebase_url": "https://leymusapp-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "leymusapp",
+    "storage_bucket": "leymusapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:120590702410:android:e35da1528f5435119b13b3",
+        "mobilesdk_app_id": "1:692816554960:android:c20e07b1e5788e2ac127d5",
         "android_client_info": {
           "package_name": "com.example.leymusapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "120590702410-96pf5ap7odsd6bgngiv09pbsci7hao5m.apps.googleusercontent.com",
+          "client_id": "692816554960-oegk5mekjsurdksns1qjd0q9cj8sqjrh.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCmy65QQMxOENqp3OU3j998ZD2s3nuYxw0"
+          "current_key": "AIzaSyDw5h8jcwqVyEbH6vbMyvTAOECUb8MPVH4"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "120590702410-96pf5ap7odsd6bgngiv09pbsci7hao5m.apps.googleusercontent.com",
+              "client_id": "692816554960-oegk5mekjsurdksns1qjd0q9cj8sqjrh.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
