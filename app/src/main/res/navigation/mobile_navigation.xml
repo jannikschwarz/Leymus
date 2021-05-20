@@ -9,7 +9,20 @@
         android:id="@+id/nav_home"
         android:name="com.example.leymusapp.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_ordered_lessons"
+            app:destination="@id/nav_ordered_lessons" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_order_lesson"
+            app:destination="@id/nav_order_lesson" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_gallery"
+            app:destination="@id/nav_gallery" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_news"
+            app:destination="@id/nav_news" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_gallery"

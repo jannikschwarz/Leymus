@@ -31,7 +31,7 @@ public class FirebaseStorageRepository {
         imagesForHomeM = new MutableLiveData<>();
         imagesForNewsM = new MutableLiveData<>();
         imagesForGalleryM = new MutableLiveData<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance("https://leymus-a4763-default-rtdb.firebaseio.com").getReference();
     }
 
     public static synchronized FirebaseStorageRepository getInstance(){
@@ -43,15 +43,12 @@ public class FirebaseStorageRepository {
 
     public void retrieveNewsImages(){
         imagesForNews = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("NewsImages");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    imagesForNews.add(dataSnapshot.getValue(ImageId.class));
-                    System.out.println("Inside Retrieve Gallery For loop1");
-                }
+                System.out.println("onDataChange inside News");
+                System.out.println(snapshot.getValue(ImageId.class));
                 imagesForNewsM.postValue(imagesForNews);
             }
 
@@ -71,15 +68,16 @@ public class FirebaseStorageRepository {
 
     public void retrieveHomeImages(){
         imagesForHome = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("HomeImages");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("onDataChange inside Home");
+                System.out.println(snapshot.getValue(ImageId.class));
+                /*
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     imagesForHome.add(dataSnapshot.getValue(ImageId.class));
-                    System.out.println("Inside Retrieve Gallery For loop2");
-                }
+                }*/
                 imagesForHomeM.postValue(imagesForHome);
             }
             @Override
@@ -98,15 +96,16 @@ public class FirebaseStorageRepository {
 
     public void retrieveGalleryImages(){
         imagesForGallery = new ArrayList<>();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
         Query query = databaseReference.child("GalleryImages");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                System.out.println("onDataChange inside Gallery");
+                System.out.println(snapshot.getValue(ImageId.class));
+                /*
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     imagesForGallery.add(dataSnapshot.getValue(ImageId.class));
-                }
-                System.out.println("Inside Retrieve Gallery" + imagesForGallery.size());
+                }*/
                 imagesForGalleryM.postValue(imagesForHome);
             }
             @Override
