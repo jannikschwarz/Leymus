@@ -40,8 +40,7 @@ public class HomeFragment extends Fragment{
         /*
         homeImage = (ImageView) getView().findViewById(R.id.cycling_image_view);
         MyThread myThread = new MyThread();
-        myThread.run();
-         */
+        myThread.run();*/
     }
 
     public void setImage(String image){
@@ -53,17 +52,20 @@ public class HomeFragment extends Fragment{
             int currentImage = 0;
             int listSize;
             while(true){
-                listSize = homeImagesM.getValue().size();
-                if(currentImage > listSize){
-                    currentImage = 0;
-                }
-                if(listSize != 0){
-                    setImage(homeImagesM.getValue().get(currentImage).getRef());
-                    currentImage++;
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                if(homeImagesM.getValue() != null){
+                    listSize = homeImagesM.getValue().size();
+                    if(currentImage > listSize){
+                        currentImage = 0;
+                    }
+                    if(listSize != 0){
+                        System.out.println("Trying to add image");
+                        setImage(homeImagesM.getValue().get(currentImage).getRef());
+                        currentImage++;
+                        try {
+                            Thread.sleep(20000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }

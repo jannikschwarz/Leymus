@@ -43,7 +43,7 @@ public class FrontActivity extends AppCompatActivity {
             editor = prefs.edit();
         }catch (NullPointerException e){}
         viewModel = new ViewModelProvider(this).get(FrontViewModel.class);
-        checkedIfSignetIn();
+        //checkedIfSignetIn();
         setContentView(R.layout.activity_front);
         String action = Intent.ACTION_VIEW;
         Uri uri = Uri.parse("https://leymus.art/");

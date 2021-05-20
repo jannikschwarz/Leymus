@@ -32,6 +32,8 @@ public class FirebaseStorageRepository {
         imagesForNewsM = new MutableLiveData<>();
         imagesForGalleryM = new MutableLiveData<>();
         databaseReference = FirebaseDatabase.getInstance("https://leymusapp-default-rtdb.europe-west1.firebasedatabase.app/").getReference();
+        imagesForHome = new ArrayList<>();
+
     }
 
     public static synchronized FirebaseStorageRepository getInstance(){
@@ -67,18 +69,17 @@ public class FirebaseStorageRepository {
     }
 
     public void retrieveHomeImages(){
-        imagesForHome = new ArrayList<>();
         Query query = databaseReference.child("panItems");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                System.out.println("onDataChange inside Home");
-                System.out.println(snapshot.getValue(ImageId.class));
-                /*
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    imagesForHome.add(dataSnapshot.getValue(ImageId.class));
-                }*/
-                imagesForHomeM.postValue(imagesForHome);
+                    ImageId toAdd = new ImageId();
+                    toAdd.setRef((String)dataSnapshot.getValue());
+                    imagesForHome.add(toAdd);
+                }
+                imagesForHomeM.setValue(imagesForHome);
+                System.out.println("Size of home: " + imagesForHomeM.getValue().size());
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -89,8 +90,10 @@ public class FirebaseStorageRepository {
 
     public MutableLiveData<List<ImageId>> getImagesForHomeM() {
         retrieveHomeImages();
-        imagesForHomeM.setValue(imagesForHome);
-        System.out.println("Size home: " + imagesForHome.size());
+        if(imagesForHomeM.getValue() == null){
+            System.out.println("THE FUCK !!!!!!!!!");
+        }
+        imagesForHome = new ArrayList<>();
         return imagesForHomeM;
     }
 
@@ -101,11 +104,9 @@ public class FirebaseStorageRepository {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 System.out.println("onDataChange inside Gallery");
-                System.out.println(snapshot.getValue(ImageId.class));
-                /*
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     imagesForGallery.add(dataSnapshot.getValue(ImageId.class));
-                }*/
+                }
                 imagesForGalleryM.postValue(imagesForHome);
             }
             @Override

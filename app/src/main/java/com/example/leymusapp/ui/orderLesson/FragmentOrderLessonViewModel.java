@@ -32,7 +32,7 @@ public class FragmentOrderLessonViewModel extends AndroidViewModel {
         List<Lesson> allLessons = getAllLessons().getValue();
         Lesson toAdd;
         if(allLessons == null){
-            toAdd = new Lesson(name,0,type,userRepository.getCurrentUser().getValue().getEmail());
+            toAdd = new Lesson(name,0,type,"Email");
             insertLesson(toAdd);
             mLessonType.setValue("");
             mLessonText.setValue("");

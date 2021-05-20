@@ -31,6 +31,7 @@ public class HomeViewModel extends ViewModel {
         }else{
             imgsToReturnM = FirebaseStorageRepository.getInstance().getImagesForHomeM();
         }
+        System.out.println("Inside init" + imgsToReturnM.getValue().size());
     }
 
     public MutableLiveData<List<ImageId>> getImgToReturn() {

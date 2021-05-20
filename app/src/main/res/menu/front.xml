@@ -14,11 +14,4 @@
         android:orderInCategory="100"
         android:title="Dansk"
         app:showAsAction="never" />
-
-    <item
-        android:id="@+id/Profile"
-        android:icon="@mipmap/profile_icon"
-        android:orderInCategory="100"
-        android:title="Profile"
-        app:showAsAction="never" />
 </menu>

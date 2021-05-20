@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "692816554960-pvskudkastcp4g471ms8uni607vhsoh7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.leymusapp",
+            "certificate_hash": "2b8de84d4bf6659eac3019fcab7085b716e6d9c3"
+          }
+        },
+        {
           "client_id": "692816554960-oegk5mekjsurdksns1qjd0q9cj8sqjrh.apps.googleusercontent.com",
           "client_type": 3
         }
