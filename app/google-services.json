@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "942565024731",
+    "project_id": "leymus-8fe69",
+    "storage_bucket": "leymus-8fe69.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:942565024731:android:0d01d248e78c5340d33dfe",
+        "android_client_info": {
+          "package_name": "com.example.leymus"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "942565024731-sm55b96h3qibpfb1kvj4igu167omgv2j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.leymus",
+            "certificate_hash": "2b8de84d4bf6659eac3019fcab7085b716e6d9c3"
+          }
+        },
+        {
+          "client_id": "942565024731-1na9a9e71f21m5g4b4ts5nv1okh5ngdc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAx6JC45CvTWIzwPiSH1g41T7HnjAXnijw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "942565024731-1na9a9e71f21m5g4b4ts5nv1okh5ngdc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
